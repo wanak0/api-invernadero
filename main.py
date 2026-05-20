@@ -7,7 +7,9 @@ from pydantic import BaseModel
 from datetime import datetime, timedelta
 from typing import List
 
-DATABASE_URL='mysql+pymysql://api_user:password123@localhost/invernadero_db'
+import os
+
+DATABASE_URL=os.getenv('DATABASE_URL','mysql+pymysql://api_user:password123@localhost/invernadero_db')
 
 engine=create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
